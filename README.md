@@ -72,6 +72,10 @@ npx sequelize-cli db:migrate
 
 https://www.notion.so/dimsss/Shop-API-56f165e2517f4ac9ae1dc01202920a94
 
+## 데이터베이스 설계도
+
+![](image/shop-erd.png)
+
 ## 🌐 API Document
 
 coming soon

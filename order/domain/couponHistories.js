@@ -1,51 +1,44 @@
-const {v4: uuidv4} = require('uuid')
-
 module.exports = (sequelize, DataTypes) => {
-  const points = sequelize.define(
-    'sample',
+  const couponHistories = sequelize.define(
+    'coupon_histories',
     {
-      sampleId: {
+      couponHistoryId: {
         type: DataTypes.UUID,
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
       },
-      placeId: {
+      couponTypeId: {
         type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false,
       },
-      reviewId: {
-        type: DataTypes.UUID,
-        allowNull: false,
-      },
-      userId: {
-        type: DataTypes.UUID,
-        allowNull: false,
-      },
-      hasBonus: {
-        type: DataTypes.TINYINT,
-        allowNull: false,
-      },
-      point: {
+      discounAmount: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
       createdAt: {
         type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
         allowNull: false,
       },
       updatedAt: {
         type: DataTypes.DATE,
-        allowNull: false,
         onUpdate: DataTypes.NOW,
+        allowNull: false,
+      },
+      deletedAt: {
+        type: DataTypes.DATE,
+        allowNull: true,
       },
     },
     {
       charset: 'utf8mb4',
       collate: 'utf8mb4_general_ci',
-      freezeTableName: true,
+      timestamp: false,
+      paronid: true,
     },
   )
 
-  return points
+  return couponHistories
 }
