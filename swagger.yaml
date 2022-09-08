@@ -1,0 +1,202 @@
+openapi: 3.0.3
+info:
+  title: Shop API
+  description: |-
+    설명
+servers:
+  - url: http://localhost:3000
+tags:
+  - name: article
+    description:
+    externalDocs:
+      description: Find out more
+      url: http://localhost:3000
+paths:
+  /api/article:
+    patch:
+      tags:
+        - article
+      summary: 게시글 수정
+      description: 게시글 내용을 수정합니다
+      operationId: updateArticle
+      requestBody:
+        description: 수정할 게시글 내용이 담겨있습니다
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  example: "7d0cf64a-2c53-4a0a-b5f2-6209a7ff662f"
+                title:
+                  type: string
+                  example: "aaaaaaaaaaaaaaaa😃aaa"
+                content:
+                  type: string
+                  example: "😃😃😃😃😃"
+                password:
+                  type: string
+                  example: "asd1sd"
+
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: integer
+                example: 1
+
+        "500":
+          description: Internal Server Error
+
+    post:
+      tags:
+        - article
+      summary: 게시글 등록
+      description: 새로운 게시글을 등록합니다
+      operationId: postArticle
+      requestBody:
+        description:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  example: "7d0cf64a-2c53-4a0a-b5f2-6209a7ff662f"
+                title:
+                  type: string
+                  example: "aaaaaaaaaaaaaaaa😃aaa"
+                content:
+                  type: string
+                  example: "😃😃😃😃😃"
+                password:
+                  type: string
+                  example: "asd1sd"
+        required: true
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  createdAt:
+                    type: string
+                    example: "2022-09-06T12:12:02.727Z"
+                  updateAt:
+                    type: string
+                    example: "2022-09-06T12:12:02.728Z"
+                  articleId:
+                    type: string
+                    example: "5f04f51b-64de-4200-a2d2-7033de275f7b"
+                  sequenceId:
+                    type: integer
+                    example: 93,
+                  userId:
+                    type: string
+                    example: "7d0cf64a-2c53-4a0a-b5f2-6209a7ff662f"
+                  title:
+                    type: string
+                    example: "aaaaaaaaaaaaaaaa😃aaa"
+                  content:
+                    type: string
+                    example: "😃😃😃😃😃"
+                  password:
+                    type: string
+                    example: "$2b$05$326IuoERIPNJG5Y8eGhFoOvbUNYFFlwNtbVQxev4wFrISGFaN6aL6"
+                  weather:
+                    type: string
+                    example: "Partly cloudy"
+        "500":
+          description: Internal Server Error
+
+    delete:
+      tags:
+        - article
+      summary: 게시글 삭제
+      description: 하나의 게시글을 삭제합니다
+      operationId: deleteArticle
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                  example: "7d0cf64a-2c53-4a0a-b5f2-6209a7ff662f"
+                articleId:
+                  type: string
+                  example: "338cc95a-1135-4133-8a37-5a4914399411"
+                password:
+                  type: string
+                  example: "asd12dd"
+      responses:
+        "200":
+          description: successful operation
+        "500":
+          description: Internal Server Error
+    get:
+      tags:
+        - article
+      summary: 게시글 리스트 조회
+      description: 게시글 리스트를 가져옵니다
+      operationId: getArticles
+      parameters:
+        - name: sequenceId
+          in: query
+          description: 게시글 아이디
+          required: true
+          explode: true
+          schema:
+            type: integer
+            example: 193
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    sequenceId:
+                      type: integer
+                      example: 981
+                    articleId:
+                      type: string
+                      example: "338cc95a-1135-4133-8a37-5a4914399411"
+                    userId:
+                      type: string
+                      example: "7d0cf64a-2c53-4a0a-b5f2-6209a7ff662f"
+                    title:
+                      type: string
+                      example: "aaaaaaaaaaaaaaaa😃aaa"
+                    content:
+                      type: string
+                      example: "😃😃😃😃😃"
+                    password:
+                      type: string
+                      example: "$2b$05$bIUY0oTbBiA1vq6fvkaz9ODsPyU4dVsDnnxiitJOfl870BxPisPC."
+                    createdAt:
+                      type: string
+                      format: date-time
+                      example: "2022-09-07T02:27:05.000Z"
+                    updatedAt:
+                      type: string
+                      format: date-time
+                      example: "2022-09-07T02:27:05.000Z"
+                    deletedAt:
+                      type: string
+                      format: date-time
+                      example: ""
+
+        "500":
+          description: Internal Server Error
