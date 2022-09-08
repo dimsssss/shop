@@ -44,4 +44,4 @@ workflows:
   build:
     jobs:
       - build:
-          context: test
+          context: shop
