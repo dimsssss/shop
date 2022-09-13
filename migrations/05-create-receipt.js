@@ -4,15 +4,30 @@ module.exports = {
       .createTable(
         'receipt',
         {
+          sequenceId: {
+            type: Sequelize.DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false,
+          },
           receiptId: {
             type: Sequelize.DataTypes.UUID,
-            primaryKey: true,
             defaultValue: Sequelize.DataTypes.UUIDV4,
             allowNull: false,
           },
           orderId: {
             type: Sequelize.DataTypes.UUID,
             defaultValue: Sequelize.DataTypes.UUIDV4,
+            allowNull: false,
+          },
+          customerId: {
+            type: Sequelize.DataTypes.UUID,
+            defaultValue: Sequelize.DataTypes.UUIDV4,
+            allowNull: false,
+          },
+          customerName: {
+            type: Sequelize.DataTypes.STRING,
+            defaultValue: Sequelize.DataTypes.STRING,
             allowNull: false,
           },
           productId: {
@@ -25,9 +40,24 @@ module.exports = {
             defaultValue: Sequelize.DataTypes.INTEGER,
             allowNull: false,
           },
-          totalPrice: {
+          price: {
             type: Sequelize.DataTypes.INTEGER,
             defaultValue: Sequelize.DataTypes.INTEGER,
+            allowNull: false,
+          },
+          country_code: {
+            type: Sequelize.DataTypes.STRING,
+            defaultValue: Sequelize.DataTypes.STRING,
+            allowNull: false,
+          },
+          city: {
+            type: Sequelize.DataTypes.STRING,
+            defaultValue: Sequelize.DataTypes.STRING,
+            allowNull: false,
+          },
+          zipcode: {
+            type: Sequelize.DataTypes.STRING,
+            defaultValue: Sequelize.DataTypes.STRING,
             allowNull: false,
           },
           createdAt: {
@@ -55,6 +85,7 @@ module.exports = {
       .then(() => {
         queryInterface.addIndex('receipt', ['orderId'])
         queryInterface.addIndex('receipt', ['productId'])
+        queryInterface.addIndex('receipt', ['customerName'])
       })
   },
   down: queryInterface => {
