@@ -1,8 +1,6 @@
 const express = require('express')
 const router = express.Router()
-
-router.get('/', function (req, res, next) {
-  res.json()
-})
+const orderController = require('./orderController')
+router.get('/', orderController.getOrderList)
 
 module.exports = router

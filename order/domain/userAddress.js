@@ -1,20 +1,24 @@
 module.exports = (sequelize, DataTypes) => {
-  const orders = sequelize.define(
-    'orders',
+  const userAddress = sequelize.define(
+    'user_address',
     {
-      orderId: {
+      addressId: {
         type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
+        defaultValue: DataTypes.UUIDV4,
         allowNull: false,
       },
-      orderState: {
+      userId: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+      },
+      zipcode: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      customerId: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+      city: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
       createdAt: {
@@ -25,7 +29,6 @@ module.exports = (sequelize, DataTypes) => {
       updatedAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
-        onUpdate: DataTypes.NOW,
         allowNull: false,
       },
       deletedAt: {
@@ -41,5 +44,5 @@ module.exports = (sequelize, DataTypes) => {
     },
   )
 
-  return orders
+  return userAddress
 }

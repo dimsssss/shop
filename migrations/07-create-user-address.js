@@ -2,21 +2,25 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface
       .createTable(
-        'products',
+        'user_address',
         {
-          productId: {
+          addressId: {
             type: Sequelize.DataTypes.UUID,
             primaryKey: true,
             defaultValue: Sequelize.DataTypes.UUIDV4,
             allowNull: false,
           },
-          name: {
+          userId: {
+            type: Sequelize.DataTypes.UUID,
+            defaultValue: Sequelize.DataTypes.UUIDV4,
+            allowNull: false,
+          },
+          zipcode: {
             type: Sequelize.DataTypes.STRING,
             allowNull: false,
           },
-          price: {
-            type: Sequelize.DataTypes.INTEGER,
-            defaultValue: Sequelize.DataTypes.INTEGER,
+          city: {
+            type: Sequelize.DataTypes.STRING,
             allowNull: false,
           },
           createdAt: {
@@ -44,6 +48,6 @@ module.exports = {
       .then(() => {})
   },
   down: queryInterface => {
-    return queryInterface.dropTable('products')
+    return queryInterface.dropTable('user_address')
   },
 }
