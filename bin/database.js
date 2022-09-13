@@ -8,7 +8,7 @@ const path = require('path')
 const Sequelize = require('sequelize')
 const basename = path.basename(__filename)
 const config = require('../config/config')
-const domainLocation = `${process.cwd()}/article/domain`
+const domainLocation = `${process.cwd()}/order/domain`
 const db = {}
 
 let sequelize
