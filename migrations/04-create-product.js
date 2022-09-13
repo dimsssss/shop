@@ -14,11 +14,6 @@ module.exports = {
             type: Sequelize.DataTypes.STRING,
             allowNull: false,
           },
-          quantity: {
-            type: Sequelize.DataTypes.INTEGER,
-            defaultValue: Sequelize.DataTypes.INTEGER,
-            allowNull: false,
-          },
           price: {
             type: Sequelize.DataTypes.INTEGER,
             defaultValue: Sequelize.DataTypes.INTEGER,
