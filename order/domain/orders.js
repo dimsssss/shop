@@ -8,13 +8,13 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         allowNull: false,
       },
+      orderState: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       customerId: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
-      },
-      customerName: {
-        type: DataTypes.STRING,
         allowNull: false,
       },
       createdAt: {
