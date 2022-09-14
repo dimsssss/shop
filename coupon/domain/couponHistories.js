@@ -1,10 +1,15 @@
 module.exports = (sequelize, DataTypes) => {
   const couponHistories = sequelize.define(
-    'coupon_histories',
+    'couponHistories',
     {
+      sequenceId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+        allowNull: false,
+      },
       couponHistoryId: {
         type: DataTypes.UUID,
-        primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
       },
@@ -13,7 +18,12 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
       },
-      discounAmount: {
+      orderId: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+      },
+      discountAmount: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -37,6 +47,7 @@ module.exports = (sequelize, DataTypes) => {
       collate: 'utf8mb4_general_ci',
       timestamp: false,
       paronid: true,
+      tableName: 'coupon_histories',
     },
   )
 
