@@ -81,5 +81,11 @@ module.exports = (sequelize, DataTypes) => {
       freezeTableName: true,
     },
   )
+
+  receipt.associate = db => {
+    const {orders} = db
+    receipt.belongsTo(orders, {as: 'o', foreignKey: 'orderId'})
+  }
+
   return receipt
 }
