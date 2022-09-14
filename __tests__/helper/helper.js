@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const db = require('../bin/database')
+const db = require('../../bin/database')
 const {sequelize} = db
 const {faker} = require('@faker-js/faker')
 
