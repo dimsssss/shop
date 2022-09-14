@@ -32,7 +32,9 @@ describe('주문 통합테스트', () => {
       expect(results[i].zipcode).toEqual(receipts[i].zipcode)
     }
   })
-
+  /**
+   * 주문 상태 별로 조회
+   */
   test.each([
     ['주문', []],
     ['결재완료', []],
@@ -43,5 +45,23 @@ describe('주문 통합테스트', () => {
     results.forEach(result => {
       expect(result.orderState).toEqual(input)
     })
+  })
+
+  test('orderState가 주문인 경우에만 orderState를 발송으로 변경할 수 있다', async () => {
+    const orderService = require('../../order/orderService')
+    const orders = initData[2]
+
+    for (let i = 0; i < orders.length; i += 1) {
+      if (orders[i].orderState === '주문') {
+        const result = await orderService.updateOrderStateToShip(
+          orders[i].orderId,
+        )
+        expect(result).toEqual([1])
+      } else {
+        await expect(
+          orderService.updateOrderStateToShip(orders[i].orderId),
+        ).rejects.toThrowError(Error)
+      }
+    }
   })
 })
