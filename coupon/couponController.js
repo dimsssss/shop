@@ -16,6 +16,21 @@ const publishDiscountCoupon = async (validator, req, res) => {
   }
 }
 
+const getCouponHistory = async (validator, req, res) => {
+  if (validator.error instanceof Error) {
+    return res.status(StatusCodes.BAD_REQUEST).send(validator.error.details)
+  }
+
+  try {
+    return res.status(StatusCodes.CREATED).send()
+  } catch (err) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .send(getReasonPhrase(StatusCodes.INTERNAL_SERVER_ERROR))
+  }
+}
+
 module.exports = {
   publishDiscountCoupon,
+  getCouponHistory,
 }

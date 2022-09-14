@@ -4,9 +4,14 @@ module.exports = {
       .createTable(
         'coupon_histories',
         {
+          sequenceId: {
+            type: Sequelize.DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+            allowNull: false,
+          },
           couponHistoryId: {
             type: Sequelize.DataTypes.UUID,
-            primaryKey: true,
             defaultValue: Sequelize.DataTypes.UUIDV4,
             allowNull: false,
           },
@@ -15,7 +20,12 @@ module.exports = {
             defaultValue: Sequelize.DataTypes.UUIDV4,
             allowNull: false,
           },
-          discounAmount: {
+          orderId: {
+            type: Sequelize.DataTypes.UUID,
+            defaultValue: Sequelize.DataTypes.UUIDV4,
+            allowNull: false,
+          },
+          discountAmount: {
             type: Sequelize.DataTypes.INTEGER,
             allowNull: false,
           },
