@@ -9,6 +9,7 @@ const createProductData = () => {
   const orderDummy = []
   const reciptDummy = []
   const userDummy = []
+  const orderStates = ['주문', '결제완료', '결제취소']
   for (let i = 0; i < 10; i += 1) {
     const orderId = faker.datatype.uuid()
     const userId = faker.datatype.uuid()
@@ -21,6 +22,7 @@ const createProductData = () => {
     const country = faker.address.countryCode('alpha-2')
     const zipcode = faker.address.zipCodeByState(country)
     const city = faker.address.city()
+
     productDummy.push({
       productId,
       name: productName,
@@ -29,7 +31,13 @@ const createProductData = () => {
     orderDummy.push({
       orderId,
       cutomerId: userId,
-      orderState: '주문',
+      orderState:
+        orderStates[
+          faker.datatype.number({
+            min: 0,
+            max: 2,
+          })
+        ],
     })
 
     userDummy.push({

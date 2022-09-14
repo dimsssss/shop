@@ -1,6 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const orderController = require('./orderController')
-router.get('/', orderController.getOrderList)
+const {queryStringValidator} = require('./validator')
+
+router.get('/', queryStringValidator, orderController.getOrderList)
 
 module.exports = router
