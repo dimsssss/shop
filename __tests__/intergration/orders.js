@@ -1,6 +1,6 @@
 /* global describe, test, beforeAll, afterAll, expect */
 describe('주문 통합테스트', () => {
-  const helper = require('../helper')
+  const helper = require('../helper/helper')
   let initData
 
   beforeAll(async () => {
