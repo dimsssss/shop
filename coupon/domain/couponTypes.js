@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
   const couponTypes = sequelize.define(
-    'coupon_types',
+    'couponTypes',
     {
       couponTypeId: {
         type: DataTypes.UUID,
@@ -8,8 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4,
         allowNull: false,
       },
-      name: {
+      couponType: {
         type: DataTypes.STRING,
+        allowNull: false,
+      },
+      value: {
+        type: DataTypes.INTEGER,
         allowNull: false,
       },
       createdAt: {
@@ -32,6 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       collate: 'utf8mb4_general_ci',
       timestamp: false,
       paronid: true,
+      tableName: 'coupon_types',
     },
   )
 
