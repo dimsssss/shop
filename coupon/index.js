@@ -9,4 +9,6 @@ router.post(
   couponController.publishDiscountCoupon,
 )
 
+router.get('/', couponController.getCouponHistory)
+
 module.exports = router
