@@ -85,6 +85,29 @@ const findAllOrder = async filter => {
   }
 }
 
+const getOrder = async orderId => {
+  try {
+    const {orders} = db
+    return await orders.findByPk(orderId, {raw: true})
+  } catch (err) {
+    throw new Error(err)
+  }
+}
+
+const updateOrderState = async orderId => {
+  try {
+    const {orders} = db
+    return await orders.update(
+      {orderState: '발송'},
+      {where: {orderId}, raw: true},
+    )
+  } catch (err) {
+    throw new Error(err)
+  }
+}
+
 module.exports = {
   findAllOrder,
+  getOrder,
+  updateOrderState,
 }
