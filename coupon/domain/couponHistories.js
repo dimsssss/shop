@@ -51,5 +51,13 @@ module.exports = (sequelize, DataTypes) => {
     },
   )
 
+  couponHistories.associate = db => {
+    const {couponTypes} = db
+    couponHistories.belongsTo(couponTypes, {
+      foreignKey: 'couponTypeId',
+      as: 'c',
+    })
+  }
+
   return couponHistories
 }

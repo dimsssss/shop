@@ -3,6 +3,7 @@ const router = express.Router()
 const couponController = require('./couponController')
 const couponValidator = require('./couponValidator')
 
+router.get('/statics', couponController.getCouponUsageAndCouponDiscountSum)
 router.post(
   '/',
   couponValidator.bodyValidator,
