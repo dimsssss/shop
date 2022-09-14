@@ -1,9 +1,14 @@
 const {StatusCodes, getReasonPhrase} = require('http-status-codes')
 const orderService = require('./orderService')
 
-const getOrderList = (req, res) => {
+const getOrderList = async (validator, req, res, next) => {
+  if (validator.error instanceof Error) {
+    return res.status(StatusCodes.BAD_REQUEST).send(validator.error.details)
+  }
+
   try {
-    return res.status(StatusCodes.OK).send(orderService.getOrderList())
+    const result = await orderService.getOrderList(req.query)
+    return res.status(StatusCodes.OK).send(result)
   } catch (err) {
     return res
       .status(StatusCodes.INTERNAL_SERVER_ERROR)
