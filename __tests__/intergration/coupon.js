@@ -40,4 +40,21 @@ describe('쿠폰 통합테스트', () => {
       )
     }
   })
+
+  test('쿠폰 종류별로 사용 횟수와 총 할인 금액을 가져온다', async () => {
+    const amount = initData[2]
+    const rate = initData[3]
+    const couponService = require('../../coupon/couponService')
+    const staticies = await couponService.getCouponUsageAndCouponDiscountSum()
+
+    staticies.forEach(statics => {
+      if (statics.couponType === '비율할인') {
+        expect(rate[0]).toEqual(Number(statics.usage))
+        expect(rate[1]).toEqual(Number(statics.totalDiscountAmount))
+      } else {
+        expect(amount[0]).toEqual(Number(statics.usage))
+        expect(amount[1]).toEqual(Number(statics.totalDiscountAmount))
+      }
+    })
+  })
 })
