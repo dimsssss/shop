@@ -32,4 +32,16 @@ describe('주문 통합테스트', () => {
       expect(results[i].zipcode).toEqual(receipts[i].zipcode)
     }
   })
+
+  test.each([
+    ['주문', []],
+    ['결재완료', []],
+    ['결재취소', []],
+  ])('주문 상태가 %p인 결과', async input => {
+    const orderService = require('../../order/orderService')
+    const results = await orderService.getOrderList({state: input})
+    results.forEach(result => {
+      expect(result.orderState).toEqual(input)
+    })
+  })
 })
